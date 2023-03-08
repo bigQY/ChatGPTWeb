@@ -2,7 +2,7 @@
 
 <div style="font-size: 1.5rem;">
   <a href="./README.md">中文</a> |
-  <a href="./README.en.md">English</a> 
+  <a href="./README.en.md">English</a>
 </div>
 </br>
 
@@ -27,16 +27,16 @@
 	- [Packaging](#packaging)
 		- [Using Docker](#using-docker)
 			- [Docker Parameter Example](#docker-parameter-example)
-			- [Docker Build & Run](#docker-build--run)
+			- [Docker Build \& Run](#docker-build--run)
 			- [Docker Compose](#docker-compose)
-		- [Deploying with Railway](#deploying-with-railway)
+		- [Deployment with Railway](#deployment-with-railway)
 			- [Railway Environment Variables](#railway-environment-variables)
-		- [Manual Packaging](#manual-packaging)
-			- [Backend Service](#backend-service-1)
-			- [Frontend Webpage](#frontend-webpage-1)
-	- [FAQ](#faq)
+		- [Manual packaging](#manual-packaging)
+			- [Backend service](#backend-service-1)
+			- [Frontend webpage](#frontend-webpage-1)
+	- [Frequently Asked Questions](#frequently-asked-questions)
 	- [Contributing](#contributing)
-	- [Sponsor](#sponsor)
+	- [Sponsorship](#sponsorship)
 	- [License](#license)
 
 ## Introduction
@@ -62,7 +62,7 @@ Switching Methods:
 
 Reverse Proxy:
 
-Available when using `ChatGPTUnofficialProxyAPI`.
+Available when using `ChatGPTUnofficialProxyAPI`.[Details](https://github.com/transitive-bullshit/chatgpt-api#reverse-proxy)
 
 ```shell
 # service/.env
@@ -83,6 +83,12 @@ For all parameter variables, check [here](#docker-parameter-example) or see:
 [✓] Multiple session storage and context logic
 
 [✓] Formatting and beautifying code-like message types
+
+[✓] Access rights control
+
+[✓] Data import and export
+
+[✓] Save message to local image
 
 [✓] Multilingual interface
 
@@ -163,6 +169,7 @@ pnpm dev
 - `OPENAI_ACCESS_TOKEN` one of two, `OPENAI_API_KEY` takes precedence when both are present
 - `OPENAI_API_BASE_URL` optional, available when `OPENAI_API_KEY` is set
 - `API_REVERSE_PROXY` optional, available when `OPENAI_ACCESS_TOKEN` is set [Reference](#introduction)
+- `AUTH_SECRET_KEY` Access Password，optional
 - `TIMEOUT_MS` timeout, in milliseconds, optional
 - `SOCKS_PROXY_HOST` optional, effective with SOCKS_PROXY_PORT
 - `SOCKS_PROXY_PORT` optional, effective with SOCKS_PROXY_HOST
@@ -205,6 +212,8 @@ services:
       OPENAI_API_BASE_URL: xxxx
       # reverse proxy, optional
       API_REVERSE_PROXY: xxx
+      # access password，optional
+      AUTH_SECRET_KEY: xxx
       # timeout, in milliseconds, optional
       TIMEOUT_MS: 60000
       # socks proxy, optional, effective with SOCKS_PROXY_PORT
@@ -223,7 +232,8 @@ The `OPENAI_API_BASE_URL` is optional and only used when setting the `OPENAI_API
 | Environment Variable | Required | Description                                                                                       |
 | -------------------- | -------- | ------------------------------------------------------------------------------------------------- |
 | `PORT`               | Required | Default: `3002`                                                                                   |
-| `TIMEOUT_MS`         | Optional | Timeout in milliseconds.                                                                          |
+| `AUTH_SECRET_KEY`         | Optional | access password                                                                          |
+| `TIMEOUT_MS`         | Optional | Timeout in milliseconds                                                                      |
 | `OPENAI_API_KEY`     | Optional | Required for `OpenAI API`. `apiKey` can be obtained from [here](https://platform.openai.com/overview). |
 | `OPENAI_ACCESS_TOKEN`| Optional | Required for `Web API`. `accessToken` can be obtained from [here](https://chat.openai.com/api/auth/session).|
 | `OPENAI_API_BASE_URL`  | Optional, only for `OpenAI API` |  API endpoint.                                                        |
